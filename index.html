@@ -12,9 +12,15 @@
     //2. Create a callback function
     xhr.onreadystatechange = function() {
       //browser returns 4 when a response is received from server
-      if (xhr.readyState === 4) {
-        //taking the response from server and saving it into the div id='ajax' as HTML
-        document.getElementById('ajax').innerHTML = xhr.responseText;
+			if (xhr.readyState === 4) {
+				//checking if status of response is 'good'
+				if (xhr.status === 200) {
+					//taking the response from server and saving it into the div id='ajax' as HTML
+					document.getElementById('ajax').innerHTML = xhr.responseText;
+					} else {
+					//pop up for all responses other than 200
+					alert(xhr.statusText);
+				}
       }
     };
     //3. Open a XMLHTTP Request, using 'GET' because we are getting data from the server
